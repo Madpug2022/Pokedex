@@ -1,11 +1,11 @@
 'use client'
 import { Pokemons } from '@/api/Pokemons/Pokemon-api'
 import { generationPicker } from '@/helper/generationPicker'
-import { IPokemon } from '@/models/podemon'
+import { IPokemonSpecies } from '@/models/podemon'
 import { setPokemons } from '@/store/slices/pokemon-slice'
 import { useAppDispatch, useAppSelector } from '@/store/store'
 import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Loader from './Loader'
 import Filter from './Filter'
 
@@ -13,7 +13,9 @@ const Pokecard = dynamic(() => import('./Pokecard'), { ssr: false })
 
 const PokeDisplay = () => {
     const dispatch = useAppDispatch()
-    const pokemons: IPokemon[] = useAppSelector(state => state.pokemons.pokemons)
+    const [filter, setFilter] = useState({ generation: 'All', type: '' })
+    const pokemons: IPokemonSpecies[] = useAppSelector(state => state.pokemons.pokemons)
+    const [filteredPokemons, setFilteredPokemons] = useState<IPokemonSpecies[]>([])
 
     useEffect(() => {
         Pokemons.getAllPokemonData()
@@ -26,22 +28,36 @@ const PokeDisplay = () => {
     }, []);
 
     useEffect(() => {
-        console.log(pokemons)
+        console.log(pokemons[0]?.generation)
     }, [pokemons])
+
+    useEffect(() => {
+        // Apply filters
+
+        if (filter.generation !== 'All') {
+            setFilteredPokemons(filteredPokemons.filter(pokemon => pokemon.generation == filter.generation))
+        }
+
+        if (filter.type !== '') {
+            setFilteredPokemons(filteredPokemons.filter(pokemon => pokemon.egg_groups.includes(filter.type)))
+        }
+
+        console.log(filteredPokemons)
+    }, [filter]);
 
     return (
         <>
             <div className='w-full flex'>
-                <Filter />
+                <Filter filter={filter} setFilter={setFilter} />
             </div>
             <section className='w-full h-full max-h-full items-stretch justify-center flex flex-wrap overflow-auto gap-5 p-5'>
-                {pokemons.length === 0 ? <Loader /> : pokemons.map((pokemon, index) => (
+                {filteredPokemons.length === 0 ? <Loader /> : pokemons.map((pokemon, index) => (
                     <Pokecard
                         key={index}
                         id={pokemon.id}
                         name={pokemon.name}
-                        img={pokemon.sprites.other['official-artwork'].front_default || '/assets/logos/POKEMON01.webp'}
-                        types={pokemon.types}
+                        img={pokemon.imageUrl || '/assets/logos/POKEMON01.webp'}
+                        types={pokemon.egg_groups}
                         generation={pokemon.generation}
                     />
                 ))}

@@ -3,7 +3,7 @@ import React, { use } from 'react'
 import { Pokemons } from "@/api/Pokemons/Pokemon-api";
 import Image from 'next/image';
 import { Tilt } from 'react-tilt';
-import { IPokemon, IPokemonType } from '@/models/podemon';
+import { IPokemonSpecies, IEggGroup } from '@/models/podemon';
 
 const defaultOptions = {
     reverse: false,
@@ -23,7 +23,7 @@ const Pokecard = ({ name, img, types, generation }:
         id: number,
         name: string,
         img: string
-        types: IPokemonType[],
+        types: IEggGroup[],
         generation: string | undefined
     }) => {
 
@@ -48,7 +48,7 @@ const Pokecard = ({ name, img, types, generation }:
                     <div className='flex flex-row gap-1'>
                         <p className='text-xs capitalize'>Types:</p>
                         {types.map((type, index) => (
-                            <span key={index} className='text-xs capitalize'>{type.type.name}</span>
+                            <p key={index} className='text-xs capitalize'>{type.name}</p>
                         ))}
 
                     </div>
