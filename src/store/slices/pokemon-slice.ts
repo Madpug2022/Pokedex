@@ -1,13 +1,12 @@
-import { PokemonI } from "@/models/podemon";
+import { generationPicker } from "@/helper/generationPicker";
+import { IPokemon } from "@/models/podemon";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface PokemonState {
-    quantity: number;
-    pokemons: PokemonI[];
+    pokemons: IPokemon[];
 }
 
 const initialState: PokemonState = {
-    quantity: 0,
     pokemons: [],
 }
 
@@ -15,12 +14,17 @@ export const pokemonSlice = createSlice({
     name: "pokeSlice",
     initialState,
     reducers: {
-
+        setPokemons: (state, action) => {
+            state.pokemons = action.payload.map((pokemon: IPokemon) => ({
+                ...pokemon,
+                generation: generationPicker(pokemon.id),
+            }));
+        },
     },
 });
 
 export default pokemonSlice;
 
 export const {
-
+    setPokemons
 } = pokemonSlice.actions;

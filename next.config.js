@@ -5,6 +5,10 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+    images: {
+        domains: ["raw.githubusercontent.com", "assets.pokemon.com"],
+    },
+};
 
 export default config;
