@@ -3,7 +3,9 @@ import React, { use } from 'react'
 import { Pokemons } from "@/api/Pokemons/Pokemon-api";
 import Image from 'next/image';
 import { Tilt } from 'react-tilt';
-import { IPokemonSpecies, IEggGroup } from '@/models/podemon';
+import { IPokemonType } from '@/models/podemon';
+import { useRouter } from 'next/navigation';
+
 
 const defaultOptions = {
     reverse: false,
@@ -18,23 +20,23 @@ const defaultOptions = {
 }
 
 
-const Pokecard = ({ name, img, types, generation }:
+const Pokecard = ({ id, name, img, types, generation }:
     {
         id: number,
         name: string,
         img: string
-        types: IEggGroup[],
+        types: IPokemonType[]
         generation: string | undefined
     }) => {
 
-
+    const router = useRouter()
 
     return (
         <Tilt
             options={defaultOptions}
             style={{ height: 280, width: 160 }}
         >
-            <div className='relative flex flex-col h-full w-full items-center justify-center bg-slate-700/70 rounded-lg border border-gray-100 shadow-sm'>
+            <div onClick={() => router.push(`/${id}`)} className='relative cursor-pointer flex flex-col h-full w-full items-center justify-center bg-slate-700/70 rounded-lg border border-gray-100 shadow-sm'>
                 <Image
                     className='w-44 h-44 p-5'
                     src={img || '/assets/logos/POKEMON01.webp'}
@@ -48,9 +50,8 @@ const Pokecard = ({ name, img, types, generation }:
                     <div className='flex flex-row gap-1'>
                         <p className='text-xs capitalize'>Types:</p>
                         {types.map((type, index) => (
-                            <p key={index} className='text-xs capitalize'>{type.name}</p>
+                            <p key={index} className='text-xs capitalize'>{type.type.name}</p>
                         ))}
-
                     </div>
                     <p className='text-xs uppercase'>Generation: {generation || ""}</p>
 

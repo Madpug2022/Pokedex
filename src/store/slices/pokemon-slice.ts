@@ -15,7 +15,7 @@ export const pokemonSlice = createSlice({
     initialState,
     reducers: {
         setPokemons: (state, action) => {
-            state.pokemons = action.payload.map((pokemon: IPokemon) => ({
+            state.pokemons = action.payload.map((pokemon: IPokemon, index: number) => ({
                 ...pokemon,
                 generation: generationPicker(pokemon.id),
             }));

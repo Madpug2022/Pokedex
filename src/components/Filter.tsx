@@ -48,7 +48,7 @@ const TypeSelect = ({ setFilter, filter }: {
 
     return (
         <select className="text-black" value={filter.type} onChange={handleTypeChange}>
-            <option value="">Seleccione Tipo</option>
+            <option value="">Todos</option>
             {types.map((type, index) => (
                 <option className="capitalize" key={index} value={type}>{type}</option>
             ))}

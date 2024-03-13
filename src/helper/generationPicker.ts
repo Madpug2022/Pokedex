@@ -1,12 +1,12 @@
 const generation = {
     i: 151,
-    ii: 100,
-    iii: 135,
-    iV: 107,
-    v: 156,
-    vi: 72,
-    vii: 88,
-    viii: 89
+    ii: 251,
+    iii: 386,
+    iV: 493,
+    v: 649,
+    vi: 721,
+    vii: 809,
+    viii: 898
 }
 
 export const generationPicker = (id: number) => {
@@ -26,5 +26,5 @@ export const generationPicker = (id: number) => {
         return 'vii'
     } else if (id <= generation.viii) {
         return 'viii'
-    }
+    } else return 'ix'
 }
