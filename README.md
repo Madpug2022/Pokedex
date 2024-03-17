@@ -1,29 +1,33 @@
-# Create T3 App
+# Pokedex
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
-## What's next? How do I make an app with this?
+## Librerias
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
-
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Este proyecto utiliza las siguientes librerias y arquitecturas
 
 - [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
 - [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- [redux]
+- [tilt]
 
-## Learn More
+## Capturas
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+![Captura de pantalla 2024-03-13 161455](https://github.com/Madpug2022/Pokedex/assets/98781462/9f12fe24-6c26-4934-9bd0-d2275f2eaed0)
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+![Captura de pantalla 2024-03-13 161527](https://github.com/Madpug2022/Pokedex/assets/98781462/39597ea8-675c-4854-8ab7-a217e2879489)
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+![Captura de pantalla 2024-03-13 161614](https://github.com/Madpug2022/Pokedex/assets/98781462/1f57b66f-7a0c-46e9-a096-720278847c46)
 
-## How do I deploy this?
+![Captura de pantalla 2024-03-13 161645](https://github.com/Madpug2022/Pokedex/assets/98781462/4a29e150-a18e-4783-990c-323673d77a33)
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+
+## Como despliego en local?
+
+
+
+1- Clona el repositorio en tu local
+2- Navega a tu carpeta clonada y ejecuta npm o yarn o npmp install para instalar las dependencias
+3- Crea un archivo de variables de entorno .env y guarda la unica variable requerida:  NEXT_PUBLIC_POKEAPI="https://pokeapi.co/api/v2"
+4- Ejecuta corriendo ell script dev
+
