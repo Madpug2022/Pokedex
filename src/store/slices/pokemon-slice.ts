@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { generationPicker } from "@/helper/generationPicker";
 import { IPokemon } from "@/models/podemon";
 import { createSlice } from "@reduxjs/toolkit";

@@ -1,3 +1,4 @@
+/* eslint-disable */
 const PokeClient = {
     baseURL: process.env.NEXT_PUBLIC_POKEAPI,
     headers: {

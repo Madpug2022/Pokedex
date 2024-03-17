@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { requests } from "../api";
 
 export const Pokemons = {

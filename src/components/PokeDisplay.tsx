@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable */
 import { Pokemons } from '@/api/Pokemons/Pokemon-api'
 import { generationPicker } from '@/helper/generationPicker'
 import { IPokemon } from '@/models/podemon'

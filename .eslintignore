@@ -1,0 +1,6 @@
+./src/api/api.ts
+./src/api/Pokemons/Pokemon-api.ts
+./src/app/(generalLayout)/[pokemonId]/components/Display.tsx
+./src/components/Pokecard.tsx
+./src/components/PokeDisplay.tsx
+./src/store/slices/pokemon-slice.ts

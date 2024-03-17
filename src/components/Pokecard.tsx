@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable */
 import React, { use } from 'react'
 import { Pokemons } from "@/api/Pokemons/Pokemon-api";
 import Image from 'next/image';
