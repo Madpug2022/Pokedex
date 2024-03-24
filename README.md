@@ -24,10 +24,12 @@ Este proyecto utiliza las siguientes librerias y arquitecturas
 
 ## Como despliego en local?
 
+Puedes ver el despliegue en Vercel: [Aqui](https://pokedex-n6695feqa-madpug2022.vercel.app/)
 
+ó
 
-1- Clona el repositorio en tu local
-2- Navega a tu carpeta clonada y ejecuta npm o yarn o npmp install para instalar las dependencias
-3- Crea un archivo de variables de entorno .env y guarda la unica variable requerida:  NEXT_PUBLIC_POKEAPI="https://pokeapi.co/api/v2"
-4- Ejecuta corriendo ell script dev
+1- Clona el repositorio en tu local <br/>
+2- Navega a tu carpeta clonada y ejecuta npm o yarn o npmp install para instalar las dependencias <br/>
+3- Crea un archivo de variables de entorno .env y guarda la unica variable requerida:  NEXT_PUBLIC_POKEAPI="https://pokeapi.co/api/v2" <br/>
+4- Ejecuta corriendo ell script dev <br/>
 
