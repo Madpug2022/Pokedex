@@ -9,10 +9,10 @@ const Searchbar = ({ search, setSearch }: { search: string, setSearch: Dispatch<
         <div>
             <input
                 type="text"
-                className='text-black'
+                className='text-black p-2 bg-blue-400 rounded-md placeholder:text-black'
                 value={search}
                 onChange={handleSearchChange}
-                placeholder="Search for a Pokemon"
+                placeholder="Search for a Pokemon..."
             />
         </div>
     )

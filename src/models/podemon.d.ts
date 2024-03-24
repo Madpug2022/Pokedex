@@ -1,6 +1,49 @@
 export interface IPokemon {
     id: number;
     name: string;
+    order: number;
+    gender_rate: number;
+    capture_rate: number;
+    base_happiness: number;
+    is_baby: boolean;
+    hatch_counter: number;
+    has_gender_differences: boolean;
+    forms_switchable: boolean;
+    growth_rate: INamedApiResource<IGrowthRate>;
+    pokedex_numbers: IPokemonSpeciesDexEntry[];
+    egg_groups: Array<INamedApiResource<IEggGroup>>;
+    color: INamedApiResource<IPokemonColor>;
+    shape: INamedApiResource<IPokemonShape>;
+    evolves_from_species: INamedApiResource<IPokemonSpecies>;
+    evolution_chain: IApiResource<IEvolutionChain>;
+    habitat: INamedApiResource<IPokemonHabitat>;
+    generation: { name: string, url: string };
+    names: IName[];
+    pal_park_encounters: IPalParkEnounterArea[];
+    flavor_text_entries: IFlavorText[];
+    form_descriptions: IDescription[];
+    genera: IGenus[];
+    varieties: IPokemonSpeciesVariety[];
+    imageUrl: string;
+    types: string[];
+    evolution_chain: string[];
+}
+export interface IEvolutionChain {
+    id: number;
+    baby_trigger_item: INamedApiResource<IItem>;
+    chain: IChainLink;
+}
+
+export interface IChainLink {
+    is_baby: boolean;
+    species: INamedApiResource<IPokemonSpecies>;
+    evolution_details: IEvolutionDetail[];
+    evolves_to: IChainLink[];
+}
+
+export interface IPokemonData {
+    id: number;
+    name: string;
     base_experience: number;
     height: number;
     is_default: boolean;
@@ -16,8 +59,30 @@ export interface IPokemon {
     species: INamedApiResource<IPokemonSpecies>;
     stats: IPokemonStat[];
     types: IPokemonType[];
-    generation?: string;
 }
+
+export interface IEvolutionDetail {
+    item: INamedApiResource<IItem>;
+    trigger: INamedApiResource<IEvolutionTrigger>;
+    gender: number;
+    held_item: INamedApiResource<IItem>;
+    move: INamedApiResource<IMove>;
+    known_move_type: INamedApiResource<IType>;
+    location: INamedApiResource<ILocation>;
+    min_level: number;
+    min_happiness: number;
+    min_beauty: number;
+    min_affection: number;
+    needs_overworld_rain: boolean;
+    party_species: INamedApiResource<IPokemonSpecies>;
+    party_type: INamedApiResource<IType>;
+    relative_physical_stats: number;
+    time_of_day: string;
+    trade_species: INamedApiResource<IPokemonSpecies>;
+    turn_upside_down: boolean;
+}
+
+export type TypesI = Record<string, string[]>;
 
 export interface IPokemonAbility {
     is_hidden: true;

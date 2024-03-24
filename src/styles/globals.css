@@ -25,6 +25,14 @@ body {
     min-height: 100vh;
 }
 
+.stat-group {
+    @apply bg-yellow-400 p-1 rounded-lg
+}
+
+.counter-stat {
+    @apply text-base font-bold
+}
+
 ::-webkit-scrollbar {
     display: none;
 }

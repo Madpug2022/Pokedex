@@ -1,7 +1,5 @@
 'use client'
-/* eslint-disable */
 import { Pokemons } from '@/api/Pokemons/Pokemon-api'
-import { generationPicker } from '@/helper/generationPicker'
 import { IPokemon } from '@/models/podemon'
 import { setPokemons } from '@/store/slices/pokemon-slice'
 import { useAppDispatch, useAppSelector } from '@/store/store'
@@ -22,13 +20,17 @@ const PokeDisplay = () => {
 
     useEffect(() => {
         if (pokemons.length > 0) return;
-        Pokemons.getAllPokemonData()
-            .then(allPokemons => {
-                dispatch(setPokemons(allPokemons));
-            })
-            .catch(error => {
-                console.error("Failed to fetch Pokemon data: ", error);
-            });
+        Pokemons.getTypes().then(types => {
+            Pokemons.getAllPokemonData(types)
+                .then(allPokemons => {
+                    dispatch(setPokemons(allPokemons));
+                })
+                .catch((error: TypeError) => {
+                    console.error("Failed to fetch Pokemon data: ", error);
+                });
+        }).catch((error: TypeError) => {
+            console.error("Failed to fetch Pokemon types: ", error);
+        });
     }, []);
 
     useEffect(() => {
@@ -39,15 +41,27 @@ const PokeDisplay = () => {
         let tempPokemons = [...pokemons];
 
         if (filter.generation !== 'All') {
-            tempPokemons = tempPokemons.filter(pokemon => pokemon.generation == filter.generation);
+            tempPokemons = tempPokemons.filter(pokemon => pokemon.generation.name == filter.generation);
         }
 
         if (filter.type !== '') {
-            tempPokemons = tempPokemons.filter(pokemon => pokemon.types.some((type: any) => type.type.name == filter.type));
+            tempPokemons = tempPokemons.filter(pokemon => pokemon.types.some((type: string) => type == filter.type));
         }
 
         if (search !== '') {
-            tempPokemons = tempPokemons.filter(pokemon => pokemon.name.includes(search.toLowerCase()));
+            /* eslint-disable */
+            const terminoBusqueda = search.toLowerCase();
+
+            let cadenasRelevantes: string[] = [];
+            tempPokemons.forEach(pokemon => {
+                if (pokemon.evolution_chain.includes(terminoBusqueda)) {
+
+                    cadenasRelevantes = [...new Set([...cadenasRelevantes, ...pokemon.evolution_chain])];
+                }
+            });
+
+            tempPokemons = tempPokemons.filter(pokemon => pokemon.name.includes(terminoBusqueda) || cadenasRelevantes.includes(pokemon.name));
+            /* eslint-enable */
         }
 
         setFilteredPokemons(tempPokemons)
@@ -65,9 +79,9 @@ const PokeDisplay = () => {
                         key={index}
                         id={pokemon.id}
                         name={pokemon.name}
-                        img={pokemon.sprites.other['official-artwork'].front_default || '/assets/logos/POKEMON01.webp'}
+                        img={pokemon.imageUrl || '/assets/logos/POKEMON01.webp'}
                         types={pokemon.types}
-                        generation={pokemon.generation}
+                        generation={pokemon.generation.name}
                     />
                 ))}
             </section>

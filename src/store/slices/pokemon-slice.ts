@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { generationPicker } from "@/helper/generationPicker";
 import { IPokemon } from "@/models/podemon";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -16,9 +15,8 @@ export const pokemonSlice = createSlice({
     initialState,
     reducers: {
         setPokemons: (state, action) => {
-            state.pokemons = action.payload.map((pokemon: IPokemon, index: number) => ({
+            state.pokemons = action.payload.map((pokemon: IPokemon) => ({
                 ...pokemon,
-                generation: generationPicker(pokemon.id),
             }));
         },
     },

@@ -9,7 +9,7 @@ const GenerationSelect = ({ setFilter, filter }: {
         type: string;
     }>>
 }) => {
-    const generations = ['All', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix'];
+    const generations = ['generation-i', 'generation-ii', 'generation-iii', 'generation-iv', 'generation-v', 'generation-vi', 'generation-vii', 'generation-viii', 'generation-ix'];
 
     const handleGenerationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setFilter(prevFilter => ({
@@ -19,8 +19,8 @@ const GenerationSelect = ({ setFilter, filter }: {
     };
 
     return (
-        <select className="text-black" value={filter.generation} onChange={handleGenerationChange}>
-            <option value="">Seleccione Generación</option>
+        <select className="text-black bg-blue-400 rounded-md" value={filter.generation} onChange={handleGenerationChange}>
+            <option value="All">All</option>
             {generations.map((generation, index) => (
                 <option className="capitalize" key={index} value={generation}>{generation}</option>
             ))}
@@ -47,8 +47,8 @@ const TypeSelect = ({ setFilter, filter }: {
     };
 
     return (
-        <select className="text-black" value={filter.type} onChange={handleTypeChange}>
-            <option value="">Todos</option>
+        <select className="text-black bg-blue-400 p-2 rounded-md" value={filter.type} onChange={handleTypeChange}>
+            <option value="">All</option>
             {types.map((type, index) => (
                 <option className="capitalize" key={index} value={type}>{type}</option>
             ))}

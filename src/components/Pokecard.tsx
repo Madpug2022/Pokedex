@@ -26,7 +26,7 @@ const Pokecard = ({ id, name, img, types, generation }:
         id: number,
         name: string,
         img: string
-        types: IPokemonType[]
+        types: string[]
         generation: string | undefined
     }) => {
 
@@ -37,7 +37,7 @@ const Pokecard = ({ id, name, img, types, generation }:
             options={defaultOptions}
             style={{ height: 280, width: 160 }}
         >
-            <div onClick={() => router.push(`/${id}`)} className='relative cursor-pointer flex flex-col h-full w-full items-center justify-center bg-slate-700/70 rounded-lg border border-gray-100 shadow-sm'>
+            <div onClick={() => router.push(`/${name}`)} className='relative cursor-pointer flex flex-col h-full w-full items-center justify-center bg-slate-700/70 rounded-lg border border-gray-100 shadow-sm'>
                 <Image
                     className='w-44 h-44 p-5'
                     src={img || '/assets/logos/POKEMON01.webp'}
@@ -51,10 +51,10 @@ const Pokecard = ({ id, name, img, types, generation }:
                     <div className='flex flex-row gap-1'>
                         <p className='text-xs capitalize'>Types:</p>
                         {types.map((type, index) => (
-                            <p key={index} className='text-xs capitalize'>{type.type.name}</p>
+                            <p key={index} className='text-xs capitalize'>{type}</p>
                         ))}
                     </div>
-                    <p className='text-xs uppercase'>Generation: {generation || ""}</p>
+                    <p className='text-xs uppercase flex items-center'>{generation || ""}</p>
 
                 </div>
             </div>
